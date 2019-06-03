@@ -4,9 +4,9 @@ using AutoMapper;
 using Exercise.Api.DbModels;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Models;
+using Exercise.Api.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Exercise.Api.Services
@@ -26,7 +26,7 @@ namespace Exercise.Api.Services
 
             dbModel.Id = new Guid().ToString();
             dbModel.CreatedAt = DateTime.UtcNow;
-            dbModel.Status = TransactionStatus.Pending;
+            dbModel.Status = DbTransactionStatus.Pending;
 
             using (var client = new AmazonDynamoDBClient())
             {
@@ -52,9 +52,9 @@ namespace Exercise.Api.Services
                         throw new KeyNotFoundException($"record with id ${model.Id} not found.");
                     }
 
-                    if(model.Status == TransactionStatus.Active)
+                    if(model.Status == DbTransactionStatus.Active)
                     {
-                        record.Status = TransactionStatus.Active;
+                        record.Status = DbTransactionStatus.Active;
 
                         await context.SaveAsync(record);
                     }

@@ -20,7 +20,7 @@ namespace Exercise.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(500, Type=typeof(string))]
-        [ProducesResponseType(201, Type=typeof(CreateExerciseResponse))]
+        [ProducesResponseType(201, Type=typeof(CreateExerciseResponseModel))]
         public async Task<IActionResult> Create([FromBody]ExerciseModel model)
         {
             string recordId;
@@ -34,7 +34,7 @@ namespace Exercise.Api.Controllers
                 return StatusCode(500, ex.Message);
             }
 
-            var response = new CreateExerciseResponse
+            var response = new CreateExerciseResponseModel
             {
                 Id = recordId
             };

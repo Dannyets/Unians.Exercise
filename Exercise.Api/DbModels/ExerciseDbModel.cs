@@ -1,5 +1,5 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
-using Exercise.Api.Models;
+using Exercise.Api.Models.Enums;
 using System;
 
 namespace Exercise.Api.DbModels
@@ -17,7 +17,7 @@ namespace Exercise.Api.DbModels
         public string Description { get; set; }
 
         [DynamoDBProperty]
-        public TransactionStatus Status { get; set; }
+        public DbTransactionStatus Status { get; set; }
 
         [DynamoDBProperty]
         public DateTime CreatedAt { get; set; }

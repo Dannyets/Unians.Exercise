@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Danny Etsebban</Authors>
+    <Company>None</Company>
+    <Product>Unians</Product>
+    <RepositoryUrl>https://github.com/Dannyets/Unians.Exercise.Api</RepositoryUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/Dannyets/Unians.Exercise.Api</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace Exercise.Api.Models
 {
-    public class CreateExerciseResponse
+    public class CreateExerciseResponseModel
     {
         public string Id { get; set; }
     }

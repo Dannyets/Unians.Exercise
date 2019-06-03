@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exercise.Api.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +9,6 @@ namespace Exercise.Api.Models
     {
         public string Id { get; set; }
 
-        public TransactionStatus Status { get; set; }
+        public DbTransactionStatus Status { get; set; }
     }
 }

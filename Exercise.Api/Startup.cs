@@ -30,6 +30,7 @@ namespace Exercise.Api
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddTransient<IExerciseService, DynamoDbExerciseStorage>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddHealthChecks();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +40,8 @@ namespace Exercise.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/health");
 
             app.UseMvc();
         }

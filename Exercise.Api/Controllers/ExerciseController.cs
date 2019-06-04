@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BaseRepositories.Models;
+using Exercise.Api.DbModels;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +14,14 @@ namespace Exercise.Api.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class ExerciseController : Controller
     {
-        private IExerciseService _exerciseService;
+        private IExerciseRepository _exerciseRepository;
+        private IMapper _mapper;
 
-        public ExerciseController(IExerciseService exerciseService)
+        public ExerciseController(IExerciseRepository exerciseRepository,
+                                  IMapper mapper)
         {
-            _exerciseService = exerciseService;
+            _exerciseRepository = exerciseRepository;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -27,7 +33,9 @@ namespace Exercise.Api.Controllers
 
             try
             {
-                recordId = await _exerciseService.Add(model);
+                var dbModel = _mapper.Map<ExerciseDbModel>(model);
+                dbModel = await _exerciseRepository.Add(dbModel);
+                recordId = dbModel.Id;
             }
             catch (Exception ex)
             {
@@ -46,11 +54,11 @@ namespace Exercise.Api.Controllers
         [ProducesResponseType(404, Type = typeof(string))]
         [ProducesResponseType(500, Type = typeof(string))]
         [ProducesResponseType(200)]
-        public async Task<ActionResult> Confirm([FromBody]ConfirmTransactionModel model)
+        public async Task<ActionResult> Confirm([FromBody]ConfirmTransactionModel<string> model)
         {
             try
             {
-                await _exerciseService.Confirm(model);
+                await _exerciseRepository.ConfirmTransaction(model);
             }
             catch (KeyNotFoundException)
             {

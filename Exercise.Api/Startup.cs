@@ -28,7 +28,7 @@ namespace Exercise.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddTransient<IExerciseService, DynamoDbExerciseStorage>();
+            services.AddTransient<IExerciseRepository, ExerciseRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHealthChecks();
         }

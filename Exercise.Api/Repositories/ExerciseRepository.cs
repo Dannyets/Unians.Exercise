@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Exercise.Api.Services
 {
-    public class ExerciseRepository : BaseDynamoDbRepository<ExerciseDbModel>, IExerciseRepository
+    public class ExerciseRepository : BaseAwsDynamoDbRepository<ExerciseDbModel>, IExerciseRepository
     {
         public ExerciseRepository(AWSCredentials credentials, 
                                   RegionEndpoint region) : base("Exercise", credentials, region)

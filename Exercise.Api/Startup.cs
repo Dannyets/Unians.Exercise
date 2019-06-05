@@ -52,8 +52,9 @@ namespace Exercise.Api
 
         public void ConfigureAws(IServiceCollection services)
         {
-            var accessKey = Configuration["AWS:AccessKey"];
-            var secretKey = Configuration["AWS:SecretKey"];
+            var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY");
+            var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY");
+
             var region = RegionEndpoint.USEast2;
 
             var credentials = new BasicAWSCredentials(accessKey, secretKey);

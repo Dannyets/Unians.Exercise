@@ -4,6 +4,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime;
 using AutoMapper;
 using BaseRepositories.DynamoDb;
+using Exercise.Api.Amazon;
 using Exercise.Api.DbModels;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Models;
@@ -15,8 +16,8 @@ namespace Exercise.Api.Services
 {
     public class ExerciseRepository : BaseDynamoDbRepository<ExerciseDbModel>, IExerciseRepository
     {
-        public ExerciseRepository(AWSCredentials credentials, 
-                                  RegionEndpoint regionEndpoint) : base("Exercise", credentials, regionEndpoint)
+        //TODO: MOVE AMAZON COFIG TO ITS OWN MODULE
+        public ExerciseRepository(AmazonConfig amazonConfig) : base("Exercise", amazonConfig.Credentials, amazonConfig.RegionEndpoint)
         {
 
         }

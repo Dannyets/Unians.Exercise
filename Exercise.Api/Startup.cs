@@ -2,6 +2,7 @@
 using Amazon;
 using Amazon.Runtime;
 using AutoMapper;
+using Exercise.Api.Amazon;
 using Exercise.Api.HealthChecks;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;
@@ -28,6 +29,8 @@ namespace Exercise.Api
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddTransient<IExerciseRepository, ExerciseRepository>();
+
+            services.AddTransient<IFileUploader, S3FileUploader>();
 
             ConfigureAws(services);
 
@@ -59,9 +62,9 @@ namespace Exercise.Api
 
             var credentials = new BasicAWSCredentials(accessKey, secretKey);
 
-            services.AddSingleton<AWSCredentials>(credentials);
+            var amazonConfig = new AmazonConfig(credentials, region);
 
-            services.AddSingleton<RegionEndpoint>(region);
+            services.AddSingleton(amazonConfig);
         }
     }
 }

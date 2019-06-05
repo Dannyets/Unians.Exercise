@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise.Api", "Exercise.Api\Exercise.Api.csproj", "{35E56CFD-EE5F-408C-9D99-4A0A983C74CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise.Api", "Exercise.Api\Exercise.Api.csproj", "{35E56CFD-EE5F-408C-9D99-4A0A983C74CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise.Api.Models", "Exercise.Api.Models\Exercise.Api.Models.csproj", "{8BB70D2E-9AB3-4978-B169-2BDFD75A7239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise.Api.Models", "Exercise.Api.Models\Exercise.Api.Models.csproj", "{8BB70D2E-9AB3-4978-B169-2BDFD75A7239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise.Api.Tests", "Exercise.Api.Tests\Exercise.Api.Tests.csproj", "{266E72AE-5288-46BF-81F8-3BB159BFF30D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8BB70D2E-9AB3-4978-B169-2BDFD75A7239}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BB70D2E-9AB3-4978-B169-2BDFD75A7239}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BB70D2E-9AB3-4978-B169-2BDFD75A7239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{266E72AE-5288-46BF-81F8-3BB159BFF30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266E72AE-5288-46BF-81F8-3BB159BFF30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266E72AE-5288-46BF-81F8-3BB159BFF30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266E72AE-5288-46BF-81F8-3BB159BFF30D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

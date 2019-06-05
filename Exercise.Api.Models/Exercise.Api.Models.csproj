@@ -8,6 +8,12 @@
     <RepositoryUrl>https://github.com/Dannyets/Unians.Exercise.Api</RepositoryUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/Dannyets/Unians.Exercise.Api</PackageProjectUrl>
+    <Version>1.0.1</Version>
+    <Description>Exercise Api Controller models</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BaseRepositories.Models" Version="1.2.2" />
+  </ItemGroup>
 
 </Project>

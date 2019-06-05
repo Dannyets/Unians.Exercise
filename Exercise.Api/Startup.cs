@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Amazon;
+using Amazon.Runtime;
 using AutoMapper;
+using Exercise.Api.HealthChecks;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Exercise.Api
 {
@@ -28,9 +26,15 @@ namespace Exercise.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddTransient<IExerciseRepository, ExerciseRepository>();
+
+            ConfigureAws(services);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddHealthChecks();
+
+            services.AddHealthChecks()
+                    .AddCheck<RepositoryHealthCheck>("Repository");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +48,19 @@ namespace Exercise.Api
             app.UseHealthChecks("/health");
 
             app.UseMvc();
+        }
+
+        public void ConfigureAws(IServiceCollection services)
+        {
+            var accessKey = Configuration["AWS:AccessKey"];
+            var secretKey = Configuration["AWS:SecretKey"];
+            var region = RegionEndpoint.USEast2;
+
+            var credentials = new BasicAWSCredentials(accessKey, secretKey);
+
+            services.AddSingleton<AWSCredentials>(credentials);
+
+            services.AddSingleton<RegionEndpoint>(region);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Amazon;
 using Amazon.Runtime;
 using Amazon.SimpleNotificationService;
+using De.Amazon.Configuration.Models;
 using Exercise.Api.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -18,12 +19,11 @@ namespace Exercise.Api.Services
         private RegionEndpoint _region;
 
         public SimpleNotificationService(IConfiguration configuration,
-                          AWSCredentials credentials,
-                          RegionEndpoint region)
+                                         AmazonConfiguration amazonConfiguration)
         {
             _configuration = configuration;
-            _credentials = credentials;
-            _region = region;
+            _credentials = amazonConfiguration.Credentials;
+            _region = amazonConfiguration.RegionEndpoint;
         }
 
         public async Task PublishMessage<T>(T message)

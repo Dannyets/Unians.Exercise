@@ -2,6 +2,7 @@
 using Amazon;
 using Amazon.Runtime;
 using AutoMapper;
+using De.Amazon.Configuration.Extensions;
 using Exercise.Api.HealthChecks;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;
@@ -29,7 +30,9 @@ namespace Exercise.Api
 
             services.AddTransient<IExerciseRepository, ExerciseRepository>();
 
-            ConfigureAws(services);
+            services.AddTransient<INotificationService, SimpleNotificationService>();
+
+            services.AddAwsConfiguration();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -48,23 +51,6 @@ namespace Exercise.Api
             app.UseHealthChecks("/health");
 
             app.UseMvc();
-        }
-
-        public void ConfigureAws(IServiceCollection services)
-        {
-            var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY");
-            var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY");
-
-            //TODO: MAKE IT CONFIGURABLE
-            var region = RegionEndpoint.USEast2;
-
-            var credentials = new BasicAWSCredentials(accessKey, secretKey);
-
-            services.AddSingleton(region);
-
-            services.AddSingleton<AWSCredentials>(credentials);
-
-            services.AddTransient<INotificationService, SimpleNotificationService>();
         }
     }
 }

@@ -41,15 +41,16 @@ namespace Exercise.Api.Controllers
 
                 dbModel = await _exerciseRepository.Add(dbModel);
 
-                model = _mapper.Map<ExerciseApiModel>(dbModel);
-
-                var message = new ConfirmExerciseMessage
+                var message = new IndexExerciseMessage
                 {
                     Id = model.Id,
-                    Title = model.Title
+                    Title = model.Title,
+                    Description = model.Description
                 };
 
                 await _notificationService.PublishMessage(message);
+
+                model = _mapper.Map<ExerciseApiModel>(dbModel);
             }
             catch (Exception ex)
             {

@@ -63,6 +63,8 @@ namespace Exercise.Api
             services.AddSingleton(region);
 
             services.AddSingleton<AWSCredentials>(credentials);
+
+            services.AddTransient<INotificationService, SNSService>();
         }
     }
 }

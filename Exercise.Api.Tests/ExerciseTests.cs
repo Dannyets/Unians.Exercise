@@ -1,14 +1,17 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Exercise.Api.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ExerciseTests
     {
         [TestMethod]
         public void TestMethod1()
         {
-
+            
         }
     }
 }

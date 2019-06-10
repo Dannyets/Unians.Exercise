@@ -1,23 +1,11 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
-using BaseRepositories.Models;
-using BaseRepositories.Models.Enums;
-using BaseRepositories.Models.Interfaces;
-using System;
+using BaseRepositories.DynamoDb.Models;
 
 namespace Exercise.Api.DbModels
 {
     [DynamoDBTable("Exercise")]
-    public class ExerciseDbModel : IBaseDbModel<string>
+    public class ExerciseDbModel : BaseDynamoDbModel
     {
-        [DynamoDBProperty]
-        public string Id { get; set; }
-
-        [DynamoDBProperty]
-        public DbTransactionStatus TransactionStatus { get; set; }
-
-        [DynamoDBProperty]
-        public DateTime CreatedAt { get; set; }
-
         [DynamoDBProperty]
         public string Title { get; set; }
 

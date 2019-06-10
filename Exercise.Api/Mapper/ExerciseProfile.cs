@@ -12,7 +12,7 @@ namespace Exercise.Api.Mapper
     {
         public ExerciseProfile()
         {
-            CreateMap<ExerciseModel, ExerciseDbModel>();
+            CreateMap<ExerciseApiModel, ExerciseDbModel>().ReverseMap();
         }
     }
 }

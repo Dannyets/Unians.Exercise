@@ -4,6 +4,8 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime;
 using AutoMapper;
 using BaseRepositories.DynamoDb;
+using BaseRepositories.DynamoDb.Interfaces;
+using BaseRepositories.DynamoDb.Repositories;
 using Exercise.Api.DbModels;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Models;
@@ -13,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Exercise.Api.Services
 {
-    public class ExerciseRepository : BaseAwsDynamoDbRepository<ExerciseDbModel>, IExerciseRepository
+    public class ExerciseRepository : BaseDynamoDbRepository<ExerciseDbModel>, IExerciseRepository
     {
         public ExerciseRepository(AWSCredentials credentials, 
                                   RegionEndpoint region) : base("Exercise", credentials, region)

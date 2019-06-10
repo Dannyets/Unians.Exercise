@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Exercise.Api.Services
 {
-    public class SNSService : INotificationService
+    public class SimpleNotificationService : INotificationService
     {
         private IConfiguration _configuration;
         private AWSCredentials _credentials;
         private RegionEndpoint _region;
 
-        public SNSService(IConfiguration configuration,
+        public SimpleNotificationService(IConfiguration configuration,
                           AWSCredentials credentials,
                           RegionEndpoint region)
         {

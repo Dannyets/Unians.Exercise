@@ -64,7 +64,7 @@ namespace Exercise.Api
 
             services.AddSingleton<AWSCredentials>(credentials);
 
-            services.AddTransient<INotificationService, SNSService>();
+            services.AddTransient<INotificationService, SimpleNotificationService>();
         }
     }
 }

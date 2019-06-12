@@ -12,6 +12,8 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.18" />
+    <PackageReference Include="AWSSDK.EC2" Version="3.3.114" />
+    <PackageReference Include="AWSSDK.ServiceDiscovery" Version="3.3.100.31" />
     <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.3.101.20" />
     <PackageReference Include="BaseRepositories.DynamoDb" Version="2.0.0" />
     <PackageReference Include="De.Amazon.Configuration" Version="1.1.0" />

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Amazon;
 using Amazon.Runtime;
+using Amazon.Util;
 using AutoMapper;
 using De.Amazon.Configuration.Extensions;
+using De.Amazon.Configuration.Models;
+using Exercise.Api.Extentions;
 using Exercise.Api.HealthChecks;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;
@@ -11,6 +15,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Exercise.Api
@@ -58,7 +63,9 @@ namespace Exercise.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public async void Configure(IApplicationBuilder app, 
+                                    IHostingEnvironment env, 
+                                    AmazonConfiguration amazonConfiguration)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +80,8 @@ namespace Exercise.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Exercise Web Api");
             });
+
+            await app.RegisterToCloudMap(Configuration, amazonConfiguration);
 
             app.UseMvc();
         }

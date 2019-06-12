@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Exercise.Api
 {
@@ -38,6 +39,22 @@ namespace Exercise.Api
 
             services.AddHealthChecks()
                     .AddCheck<RepositoryHealthCheck>("Repository");
+
+            services.AddSwaggerGen(options =>
+            {
+                var info = new Info
+                {
+                    Title = "Exercise Web Api",
+                    Version = "Vesrion 1",
+                    Contact = new Contact
+                    {
+                        Name = "Danny Etsebban",
+                        Email = "dannyets@gmail.com"
+                    }
+                };
+
+                options.SwaggerDoc("v1", info);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +66,13 @@ namespace Exercise.Api
             }
 
             app.UseHealthChecks("/health");
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Exercise Web Api");
+            });
 
             app.UseMvc();
         }

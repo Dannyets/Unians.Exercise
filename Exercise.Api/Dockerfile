@@ -4,9 +4,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["../Exercise.Api/Exercise.Api.csproj", "Exercise.Api/"]
-COPY ["../Exercise.Api.Models/Exercise.Api.Models.csproj", "Exercise.Api.Models/"]
-RUN dotnet restore "../Exercise.Api/Exercise.Api.csproj"
+COPY ["Exercise.Api/Exercise.Api.csproj", "Exercise.Api/"]
+COPY ["Exercise.Api.Models/Exercise.Api.Models.csproj", "Exercise.Api.Models/"]
+RUN dotnet restore "Exercise.Api/Exercise.Api.csproj"
 COPY . .
 WORKDIR "/src/Exercise.Api"
 RUN dotnet build "Exercise.Api.csproj" -c Release -o /app

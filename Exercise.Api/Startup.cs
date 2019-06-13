@@ -6,7 +6,7 @@ using Amazon.Util;
 using AutoMapper;
 using De.Amazon.Configuration.Extensions;
 using De.Amazon.Configuration.Models;
-using Exercise.Api.Extentions;
+using Exercise.Api.Extensions;
 using Exercise.Api.HealthChecks;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;

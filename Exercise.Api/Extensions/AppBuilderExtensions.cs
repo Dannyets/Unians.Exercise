@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Exercise.Api.Extentions
+namespace Exercise.Api.Extensions
 {
-    public static class AppBuilderExtentions
+    public static class AppBuilderExtensions
     {
         public async static Task RegisterToCloudMap(this IApplicationBuilder applicationBuilder, 
                                                     IConfiguration configuration,

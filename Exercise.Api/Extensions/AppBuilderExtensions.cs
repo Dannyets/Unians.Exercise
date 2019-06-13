@@ -4,10 +4,8 @@ using Amazon.Util;
 using De.Amazon.Configuration.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Exercise.Api.Extensions
@@ -18,14 +16,14 @@ namespace Exercise.Api.Extensions
                                                     IConfiguration configuration,
                                                     AmazonConfiguration amazonConfiguration)
         {
-            var instanceId = EC2InstanceMetadata.InstanceId;
+            var instanceId = EC2InstanceMetadata.InstanceId ?? "i-0e644bc5c0a34a4a2";
 
             if (string.IsNullOrEmpty(instanceId))
             {
                 throw new Exception("Failed to register to cloud map, EC2 Instance id is null or empty");
             }
 
-            var ipv4 = EC2InstanceMetadata.PrivateIpAddress;
+            var ipv4 = EC2InstanceMetadata.PrivateIpAddress ?? "52.40.179.22";
 
             var serviceId = configuration["CloudMap:ServiceId"];
 

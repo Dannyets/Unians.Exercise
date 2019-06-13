@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Amazon;
-using Amazon.Runtime;
-using Amazon.Util;
 using AutoMapper;
 using De.Amazon.Configuration.Extensions;
 using De.Amazon.Configuration.Models;
+using Exercise.Api.DAL.HealthChecks;
+using Exercise.Api.DAL.Interfaces;
+using Exercise.Api.DAL.Repositories;
 using Exercise.Api.Extensions;
-using Exercise.Api.HealthChecks;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +13,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Exercise.Api
@@ -40,7 +37,7 @@ namespace Exercise.Api
 
             services.AddAwsConfiguration();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddHealthChecks()
                     .AddCheck<RepositoryHealthCheck>("Repository");
@@ -80,8 +77,6 @@ namespace Exercise.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Exercise Web Api");
             });
-
-            await app.RegisterToCloudMap(Configuration, amazonConfiguration);
 
             app.UseMvc();
         }

@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using BaseRepositories.Models;
-using Exercise.Api.DbModels;
+using Exercise.Api.DAL.DbModels;
+using Exercise.Api.DAL.Interfaces;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Models;
 using Exercise.Api.Models.Messages;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exercise.Api.Controllers
 {
     [Route("api/v1/[controller]/[action]")]
-    public class ExerciseController : Controller
+    [ApiController]
+    public class ExerciseController : ControllerBase
     {
         private IExerciseRepository _exerciseRepository;
         private IMapper _mapper;

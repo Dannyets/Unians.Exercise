@@ -5,9 +5,6 @@ using De.Amazon.Configuration.Models;
 using Exercise.Api.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Exercise.Api.Services

@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Exercise.Api.DAL\Exercise.Api.DAL.csproj" />
     <ProjectReference Include="..\Exercise.Api.Models\Exercise.Api.Models.csproj" />
+    <ProjectReference Include="..\Exercise.DAL\Exercise.DAL.csproj" />
   </ItemGroup>
 
 </Project>

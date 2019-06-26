@@ -1,15 +1,12 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
-using BaseRepositories.DynamoDb.Models;
+using BaseRepositories.EntityFrameworkCore.Models;
 
-namespace Exercise.Api.DbModels
+namespace Exercise.DAL.Models
 {
-    [DynamoDBTable("Exercise")]
-    public class ExerciseDbModel : BaseDynamoDbModel
+    public class ExerciseDbModel : BaseEntity
     {
-        [DynamoDBProperty]
         public string Title { get; set; }
 
-        [DynamoDBProperty]
         public string Description { get; set; }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Exercise.Api.DAL.DbModels;
-using Exercise.Api.DAL.Interfaces;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Models;
 using Exercise.Api.Models.Messages;
+using Exercise.DAL.Interfaces;
+using Exercise.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exercise.Api.Controllers
@@ -25,6 +28,16 @@ namespace Exercise.Api.Controllers
             _exerciseRepository = exerciseRepository;
             _mapper = mapper;
             _notificationService = notificationService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ExerciseApiModel>>> Get()
+        {
+            var dbExercises = await _exerciseRepository.GetAll();
+
+            var apiExercises = dbExercises.Select(e => _mapper.Map<ExerciseApiModel>(e));
+
+            return Ok(apiExercises);
         }
 
         [HttpPost]

@@ -1,13 +1,14 @@
 ﻿using System;
 using AutoMapper;
+using BaseRepositories.EntityFrameworkCore.MySql;
 using De.Amazon.Configuration.Extensions;
 using De.Amazon.Configuration.Models;
-using Exercise.Api.DAL.HealthChecks;
-using Exercise.Api.DAL.Interfaces;
-using Exercise.Api.DAL.Repositories;
-using Exercise.Api.Extensions;
 using Exercise.Api.Interfaces;
 using Exercise.Api.Services;
+using Exercise.DAL;
+using Exercise.DAL.HealthChecks;
+using Exercise.DAL.Interfaces;
+using Exercise.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,12 @@ namespace Exercise.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            var connectionString = "Server=unians-exercise-api.cwlhm9xdeq10.us-east-2.rds.amazonaws.com;Port=3306;Database=unians_exercise;Uid=root;Pwd=12345678;";
+
+            Environment.SetEnvironmentVariable("DB_CONNECTION_STRING", connectionString);
+
+            services.AddDbContext<ExerciseDbContext>();
 
             services.AddTransient<IExerciseRepository, ExerciseRepository>();
 
@@ -62,8 +69,10 @@ namespace Exercise.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, 
                                     IHostingEnvironment env, 
-                                    AmazonConfiguration amazonConfiguration)
+                                    IServiceProvider serviceProvider)
         {
+            MySqlDbHelper.MigrateDatabase<ExerciseDbContext>(serviceProvider);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

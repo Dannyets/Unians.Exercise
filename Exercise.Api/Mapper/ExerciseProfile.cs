@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Exercise.Api.DAL.DbModels;
 using Exercise.Api.Models;
+using Exercise.DAL.Models;
 
 namespace Exercise.Api.Mapper
 {

@@ -1,10 +1,10 @@
-﻿using Exercise.Api.Interfaces;
+﻿using Exercise.DAL.Interfaces;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Exercise.Api.HealthChecks
+namespace Exercise.DAL.HealthChecks
 {
     public class RepositoryHealthCheck : IHealthCheck
     {

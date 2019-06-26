@@ -1,15 +1,12 @@
-﻿using BaseRepositories.DynamoDb.Repositories;
-using De.Amazon.Configuration.Models;
-using Exercise.Api.DbModels;
-using Exercise.Api.Interfaces;
+﻿using BaseRepositories.EntityFrameworkCore.Repositories;
+using Exercise.DAL.Interfaces;
+using Exercise.DAL.Models;
 
-namespace Exercise.Api.Services
+namespace Exercise.DAL.Repositories
 {
-    public class ExerciseRepository : BaseDynamoDbRepository<ExerciseDbModel>, IExerciseRepository
+    public class ExerciseRepository : BaseEntityFrameworkCoreRepository<ExerciseDbModel>, IExerciseRepository
     {
-        public ExerciseRepository(AmazonConfiguration amazonConfiguration) : base("Exercise", 
-                                                                                  amazonConfiguration.Credentials, 
-                                                                                  amazonConfiguration.RegionEndpoint)
+        public ExerciseRepository(ExerciseDbContext context) : base(context)
         {
 
         }

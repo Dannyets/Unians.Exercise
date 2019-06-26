@@ -1,13 +1,9 @@
-﻿using Exercise.Api.DbModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BaseRepositories.DynamoDb.Interfaces;
+﻿using Exercise.DAL.Models;
+using BaseRepositories.EntityFrameworkCore.Interfaces;
 
-namespace Exercise.Api.DAL.Interfaces
+namespace Exercise.DAL.Interfaces
 {
-    public interface IExerciseRepository : IDynamoDbRepository<ExerciseDbModel>
+    public interface IExerciseRepository : IEfRepository<ExerciseDbModel>
     {
 
     }

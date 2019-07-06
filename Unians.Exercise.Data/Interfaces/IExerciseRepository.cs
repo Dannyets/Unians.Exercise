@@ -9,6 +9,6 @@ namespace Unians.Exercise.Data.Interfaces
 {
     public interface IExerciseRepository : IEfRepository<DbExercise>
     {
-        Task<IEnumerable<DbExercise>> GetExercisesForCourseAndSemester(int courseId, int semesterId);
+        Task<IEnumerable<DbExercise>> GetExercisesForCourseAndSemester(int courseId, List<int> semesterIds);
     }
 }

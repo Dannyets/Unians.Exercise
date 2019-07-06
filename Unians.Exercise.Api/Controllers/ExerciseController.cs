@@ -23,9 +23,9 @@ namespace Unians.Exercise.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApiExercise>>> GetExercisesForCourseAndSemester(int courseId, int semesterId)
+        public async Task<ActionResult<IEnumerable<ApiExercise>>> GetExercisesForCourseAndSemester(int courseId, List<int> semesterIds)
         {
-            var exercises = await _repository.GetExercisesForCourseAndSemester(courseId, semesterId);
+            var exercises = await _repository.GetExercisesForCourseAndSemester(courseId, semesterIds);
 
             return Ok(exercises);
         }

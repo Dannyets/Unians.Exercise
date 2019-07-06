@@ -16,9 +16,11 @@ namespace Unians.Exercise.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<DbExercise>> GetExercisesForCourseAndSemester(int courseId, int semesterId)
+        public async Task<IEnumerable<DbExercise>> GetExercisesForCourseAndSemester(int courseId, List<int> semesterIds)
         {
-            return await _dbSet.Where(e => e.CourseId == courseId && e.SemesterId == semesterId).ToListAsync();
+            return await _dbSet.Where(e => e.CourseId == courseId && 
+                                           semesterIds.Contains(e.SemesterId))
+                               .ToListAsync();
         }
     }
 }

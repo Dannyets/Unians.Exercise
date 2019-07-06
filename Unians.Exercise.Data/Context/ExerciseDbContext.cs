@@ -34,17 +34,46 @@ namespace Unians.Exercise.Data.Context
 
         private void AddInitialData(ModelBuilder modelBuilder)
         {
-            var exercise = new DbExercise
+            var exercises = new List<DbExercise>
             {
-                Id = 1,
-                CourseId = 1,
-                SemesterId = 1,
-                Name = "תרגיל בית 1",
-                CreatedAt = DateTime.UtcNow,
-                LastUdpatedAt = DateTime.UtcNow
-            };
+                new DbExercise
+                {
+                    Id = 1,
+                    CourseId = 1,
+                    SemesterId = 1,
+                    Name = "תרגיל בית 1",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                },
+                new DbExercise
+                {
+                    Id = 2,
+                    CourseId = 1,
+                    SemesterId = 1,
+                    Name = "תרגיל בית 2",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                },
+                new DbExercise
+                {
+                    Id = 3,
+                    CourseId = 1,
+                    SemesterId = 2,
+                    Name = "תרגיל בית 1",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                },
+                new DbExercise
+                {
+                    Id = 4,
+                    CourseId = 1,
+                    SemesterId = 1,
+                    Name = "תרגיל בית 3",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                },
 
-            var exercises = new List<DbExercise> { exercise };
+            };
 
             modelBuilder.Entity<DbExercise>().HasData(exercises);
         }
